@@ -170,6 +170,24 @@ namespace ex9
             return beg;
         }
 
+        // печать элементов списка
+        static void ShowList(UnidirectionalList beg)
+        {
+            //проверка наличия элементов в списке
+            if (beg == null)
+            {
+                Console.WriteLine("Список пуст!");
+                return;
+            }
+            UnidirectionalList p = beg;
+            while (p != null)
+            {
+                Console.Write(p);
+                p = p.next;//переход к следующему элементу
+            }
+            Console.WriteLine();
+        }
+
         static void Main(string[] args)
         {
         }
