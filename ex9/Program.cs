@@ -227,6 +227,7 @@ namespace ex9
 
         static void Main(string[] args)
         {
+            Run();
         }
     }
 }
