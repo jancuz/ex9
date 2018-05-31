@@ -29,6 +29,43 @@ namespace ex9
             Console.WriteLine("3. Выход.");
         }
 
+        static void Run()//работа с однонаправленными списками
+        {
+            int checkRun1 = 0, left = 1, right = 3;
+            int size = 0;
+            UnidirectionalList beg = null;
+            do
+            {
+                PrintMenu();
+                checkRun1 = AskData.ReadIntNumber("Введите номер пункта, который хотите выполнить", left, right);
+                switch (checkRun1)
+                {
+                    case 1: //создать список
+                        {
+                            size = AskData.ReadIntNumber("Введите количество элементов списка:", MIN_SIZE, MAX_SIZE);
+                            beg = MakeList(ref size);
+                            ShowList(beg);
+                            break;
+                        }
+
+                    case 2: //pos и neg списки
+                        {
+                            UnidirectionalList begPos = null;
+                            UnidirectionalList begNeg = null;
+                            beg = FormPosAndNegList(beg, ref begPos, ref begNeg);
+                            Console.WriteLine("Главный список:");
+                            ShowList(beg);
+                            Console.WriteLine("Список, состоящий из положительных элементов:");
+                            ShowList(begPos);
+                            Console.WriteLine("Список, состоящий из отрицательных элементов:");
+                            ShowList(begNeg);
+                            break;
+                        }
+                }
+            } while (checkRun1 != right);
+
+        }
+
         //создание элемента списка
         static UnidirectionalList MakePoint(int d)
         {
