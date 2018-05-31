@@ -85,6 +85,54 @@ namespace ex9
             return beg;
         }
 
+        // определение первого положительного элемента в списке
+        static void FirstPos(ref UnidirectionalList beg, ref UnidirectionalList begPos)
+        {
+            UnidirectionalList p = beg;
+            while (p != null)
+            {
+                if (p.data > 0)
+                {
+                    begPos = MakePoint(p.data);
+                    beg = DelElement(beg, p.data);
+                    break;
+                }
+                p = p.next;//переход к следующему элементу
+            }
+        }
+
+        // определение первого отрицательного элемента в списке
+        static void FirstNeg(ref UnidirectionalList beg, ref UnidirectionalList begNeg)
+        {
+            UnidirectionalList p = beg;
+            while (p != null)
+            {
+                if (p.data < 0)
+                {
+                    begNeg = MakePoint(p.data);
+                    beg = DelElement(beg, p.data);
+                    break;
+                }
+                p = p.next;//переход к следующему элементу
+            }
+        }
+
+        static UnidirectionalList DelElement(UnidirectionalList beg, int key)
+        {
+            if (beg.data == key)//удаляем первый элемент
+            {
+                beg = beg.next;
+                return beg;
+            }
+            UnidirectionalList p = beg;
+            //ищем элемент для удаления и встаем на предыдущий
+            for (int i = 1; p.next.data != key && p != null; i++)
+                p = p.next;
+            //исключаем элемент из списка
+            p.next = p.next.next;
+            return beg;
+        }
+
         static void Main(string[] args)
         {
         }
