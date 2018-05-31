@@ -117,6 +117,43 @@ namespace ex9
             }
         }
 
+        // формирование списков: с отриццательными значениями, с положительными значениями
+        static UnidirectionalList FormPosAndNegList(UnidirectionalList beg, ref UnidirectionalList begPos, ref UnidirectionalList begNeg)
+        {
+            //проверка наличия элементов в списке
+            if (beg == null)
+            {
+                Console.WriteLine("Список пуст!");
+                return beg;
+            }
+
+            FirstPos(ref beg, ref begPos);
+            FirstNeg(ref beg, ref begNeg);
+
+            UnidirectionalList pos = begPos;
+            UnidirectionalList neg = begNeg;
+            UnidirectionalList p = beg;
+            while (p != null)
+            {
+                if (p.data > 0)
+                {
+                    UnidirectionalList elemPos = MakePoint(p.data);
+                    pos.next = elemPos;
+                    pos = elemPos;
+                    beg = DelElement(beg, p.data);
+                }
+                if (p.data < 0)
+                {
+                    UnidirectionalList elemNeg = MakePoint(p.data);
+                    neg.next = elemNeg;
+                    neg = elemNeg;
+                    beg = DelElement(beg, p.data);
+                }
+                p = p.next;//переход к следующему элементу
+            }
+            return beg;
+        }
+
         static UnidirectionalList DelElement(UnidirectionalList beg, int key)
         {
             if (beg.data == key)//удаляем первый элемент
